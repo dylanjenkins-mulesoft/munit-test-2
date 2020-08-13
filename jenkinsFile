@@ -1,10 +1,16 @@
 pipeline {
   agent any
+  tools {
+  	maven 'Maven 3.5.2'
+  	jdk 'JDK 8'
+  }
   stages {
     stage ('Unit Test & Package') {
       steps {
-      bat 'mvn package'
-
+      	bat "mvn package"
+      }
+    stage ('Test Results') {
+      steps {
       publishHTML (target : [allowMissing: false,
       alwaysLinkToLastBuild: true,
       keepAll: true,

@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage ('Unit Test & Package') {
       steps {
-      	bat "mvn package"
+      	sh 'mvn package'
       }
     }
     stage ('Test Results') {

@@ -1,0 +1,17 @@
+pipeline {
+  agent any
+  stages {
+    stage ('Unit Test & Package') {
+      steps {
+      sh 'mvn package'
+
+      publishHTML (target : [allowMissing: false,
+      alwaysLinkToLastBuild: true,
+      keepAll: true,
+      reportDir: 'target/site/munit/coverage/',
+      reportFiles: 'summary.html',
+      reportName: 'MUnit Code Coverage'])
+      }
+    }
+  }
+}
